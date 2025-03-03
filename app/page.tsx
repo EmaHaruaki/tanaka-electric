@@ -110,7 +110,7 @@ export default function Home() {
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">安全で信頼できる電気工事サービス</h1>
             <p className="text-xl text-gray-600 mb-8">お客様の安全と満足を第一に考えます</p>
-            <Button size="lg">お問い合わせ</Button>
+            <Button size="lg"><a href="#contact">お問い合わせ</a></Button>
           </div>
         </section>
 
