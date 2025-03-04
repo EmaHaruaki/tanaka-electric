@@ -61,6 +61,17 @@ export default function Home() {
     { href: "#contact", label: "お問い合わせ" },
   ]
 
+  // 会社情報
+  const companyInfo = [
+    { label: "社名", value: "田中工務店" },
+    { label: "所在地", value: "〒123-4567 東京都○○区××町1-2-3" },
+    { label: "代表者", value: "田中 太郎" },
+    { label: "設立年月日", value: "2000年4月1日" },
+    { label: "資本金", value: "1,000万円" },
+    { label: "登録番号", value: "建設業許可 東京都知事 許可(特-00)第000000号" },
+    { label: "事業内容", value: "電気工事業、電気通信工事業、消防施設工事業" },
+  ]
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-white shadow-sm">
@@ -106,11 +117,23 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section className="bg-gray-100 py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">安全で信頼できる電気工事サービス</h1>
-            <p className="text-xl text-gray-600 mb-8">お客様の安全と満足を第一に考えます</p>
-            <Button size="lg"><a href="#contact">お問い合わせ</a></Button>
+        <section className="relative py-20">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={"/shop.jpg"}
+              alt="電気工事サービス"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          </div>
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h1 className="text-4xl font-bold text-white mb-4">安全で信頼できる電気工事サービス</h1>
+            <p className="text-xl text-gray-200 mb-8">お客様の安全と満足を第一に考えます</p>
+            <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-white">
+              <a href="#contact">お問い合わせ</a>
+            </Button>
           </div>
         </section>
 
@@ -119,13 +142,13 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">サービス</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { name: "住宅電気工事", image: "/placeholder.svg?height=200&width=300" },
-                { name: "商業施設電気工事", image: "/placeholder.svg?height=200&width=300" },
-                { name: "電気設備保守点検", image: "/placeholder.svg?height=200&width=300" },
+                { name: "住宅電気工事", image: "/service1.jpg?height=200&width=300" },
+                { name: "商業施設電気工事", image: "/service2.jpg?height=200&width=300" },
+                { name: "電気設備保守点検", image: "/service3.jpg?height=200&width=300" },
               ].map((service) => (
                 <div key={service.name} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <Image
-                    src={service.image || "/placeholder.svg"}
+                    src={service.image || "/shop.jpg"}
                     alt={service.name}
                     width={300}
                     height={200}
@@ -148,13 +171,32 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">会社概要</h2>
             <div className="max-w-2xl mx-auto">
-              <p className="text-gray-600 mb-4">
-                当社は、20年以上の経験を持つ電気工事のプロフェッショナル集団です。
-                安全性と品質にこだわり、最新の技術と知識を活用して、お客様に最高のサービスを提供いたします。
-              </p>
-              <p className="text-gray-600">
-                地域に根ざした企業として、お客様との信頼関係を大切にし、迅速かつ丁寧な対応を心がけています。
-              </p>
+              <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="p-6">
+                  <p className="text-gray-600 mb-6">
+                    当社は、20年以上の経験を持つ電気工事のプロフェッショナル集団です。
+                    安全性と品質にこだわり、最新の技術と知識を活用して、お客様に最高のサービスを提供いたします。
+                    地域に根ざした企業として、お客様との信頼関係を大切にし、迅速かつ丁寧な対応を心がけています。
+                  </p>
+
+                  <div className="border-t pt-6">
+                    <div className="max-w-md mx-auto">
+                      <table className="w-full border-collapse text-sm">
+                        <tbody>
+                          {companyInfo.map((item, index) => (
+                            <tr key={index}>
+                              <th className="py-3 px-3 text-left font-medium text-gray-600 w-1/4 align-top border-b border-gray-200">
+                                {item.label}
+                              </th>
+                              <td className="py-3 px-3 text-gray-600 border-b border-gray-200">{item.value}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
