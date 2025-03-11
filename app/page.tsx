@@ -74,7 +74,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-white shadow-sm">
+      <header className="sticky top-0 bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Bolt className="h-8 w-8 text-yellow-500" />
