@@ -96,23 +96,22 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        {isOpen && (
-          <nav className="md:hidden bg-white shadow-sm">
-            <ul className="flex flex-col space-y-4 mt-4 px-4">
-              {menuItems.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="text-lg font-medium text-gray-600 hover:text-gray-800"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
+        <div className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={toggleMenu}></div>
+        <nav className={`fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500 inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <ul className="flex flex-col space-y-4 mt-8">
+            {menuItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="text-lg font-medium text-gray-600 hover:text-gray-800"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </header>
 
       <main className="flex-grow">
