@@ -1,14 +1,12 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Bolt, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Menu } from "lucide-react"
+import { Bolt, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Menu, X } from "lucide-react"
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false)
@@ -91,29 +89,30 @@ export default function Home() {
               ))}
             </ul>
           </nav>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">メニューを開く</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col space-y-4 mt-8">
-                {menuItems.map((item) => (
+          <div className="md:hidden">
+            <Button variant="ghost" size="icon" onClick={toggleMenu}>
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <span className="sr-only">メニューを開く</span>
+            </Button>
+          </div>
+        </div>
+        {isOpen && (
+          <nav className="md:hidden bg-white shadow-sm">
+            <ul className="flex flex-col space-y-4 mt-4 px-4">
+              {menuItems.map((item) => (
+                <li key={item.href}>
                   <a
-                    key={item.href}
                     href={item.href}
                     className="text-lg font-medium text-gray-600 hover:text-gray-800"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
                   </a>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </header>
 
       <main className="flex-grow">
